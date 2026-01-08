@@ -1,1 +1,217 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Arimo:wght@400;500;600;700&display=swap');
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    font-family: 'Arimo', sans-serif;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+:root {
+    --primary-color: #0A0A3B;
+    --primary-hover: #080829;
+    --secondary-color: #BD9339;
+    --secondary-hover: #A67C32;
+    --verde: #3DA11B;
+    --vermelho: #EF4444;
+    --azul: #51A2FF;
+    --amarelo-gradiente: linear-gradient(90deg, #BD9339 0%, #E5B345 100%);
+    --background-01: #F0F0F2;
+    --background-02: #FAFAFA;
+    --text-primary: #333;
+    --text-primary-inverse: #fff;
+    --text-secondary: #666;
+    --text-muted: #999;
+    --border-color: #ddd;
+}
+
+.form-card {
+    background: white;
+    padding: 32px;
+    border-radius: 16px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 450px;
+}
+
+.form-title {
+    color: var(--text-primary);
+    text-align: left;
+}
+
+.form-description {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 2rem;
+    text-align: left;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-wrapper i {
+    position: absolute;
+    left: 1rem;
+    color: var(--text-muted);
+    font-size: 1.2rem;
+}
+
+.input-wrapper .input-icon {
+    position: absolute;
+    left: 0.8rem;
+    width: 20px;
+    height: 20px;
+    pointer-events: none;
+}
+
+.toggle-password-btn {
+    position: absolute;
+    right: 1rem;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    transition: color 0.3s;
+}
+
+.toggle-password-btn:hover {
+    color: var(--text-secondary);
+}
+
+.toggle-password-btn svg {
+    width: 20px;
+    height: 20px;
+}
+
+.password-input {
+    padding-right: 3rem !important;
+}
+
+.form-control {
+    width: 100%;
+    padding: 1rem 1rem 1rem 2.5rem;
+    border: 1px solid var(--border-color);
+    background: var(--background-02);
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+    font-family: 'Arimo', sans-serif;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.1);
+}
+
+.form-control::placeholder {
+    color: var(--text-muted);
+}
+
+.btn-primary,
+.btn-submit {
+    background-color: var(--verde);
+    padding: 0.9rem;
+    color: white;
+    border: none;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s;
+    font-family: 'Arimo', sans-serif;
+}
+
+.btn-primary:hover,
+.btn-submit:hover {
+    filter: brightness(1.1);
+}
+
+
+.btn-primary:disabled,
+.btn-submit:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+button {
+    all: unset;
+    display: inline-block;
+    padding: 8px 16px;
+    font-size: 16px;
+    font-weight: 500;
+    background-color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+input:not(.form-control),
+textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+a {
+    text-decoration: none;
+    color: var(--azul);
+}
+
+h1, h2, h3, h4 {
+    font-weight: 500;
+    margin: 0;
+    color: var(--text-primary);
+}
+
+h1 {
+    font-size: 30px;
+}
+
+h2 {
+    font-size: 24px;
+}
+
+h3 {
+    font-size: 20px;
+}
+
+h4 {
+    font-size: 18px;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid var(--border-color);
+}

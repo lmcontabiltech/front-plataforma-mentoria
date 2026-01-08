@@ -1,1 +1,94 @@
-<p>login works!</p>
+<div class="login-container">
+  <div class="login-left">
+    <div class="login-content">
+      <div class="logo-section">
+        <img src="assets/logo/mentoria-logo.png" alt="Mentoria Logo" class="logo">
+        <h1 class="title">Plataforma de Mentoria</h1>
+        <p class="subtitle">Escola de Negócios</p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="login-right">
+    <div class="form-card" *ngIf="!mostrarRecuperarSenha">
+      <form class="login-form" [formGroup]="loginForm" (ngSubmit)="onLogin()">
+        <h3 class="form-title">Entrar na plataforma</h3>
+        <div class="form-group">
+          <label for="email">E-mail</label>
+          <div class="input-wrapper">
+            <img src="assets/icons/email.svg" alt="Email" class="input-icon">
+            <input 
+              type="email" 
+              id="email" 
+              formControlName="email"
+              placeholder="seu@email.com"
+              class="form-control"
+            >
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="password">Senha</label>
+          <div class="input-wrapper">
+            <img src="assets/icons/cadeado.svg" alt="Senha" class="input-icon">
+            <input 
+              [type]="mostrarSenha ? 'text' : 'password'" 
+              id="password" 
+              formControlName="password"
+              placeholder="Digite sua senha"
+              class="form-control password-input"
+            >
+            <button 
+              type="button" 
+              class="toggle-password-btn" 
+              (click)="toggleMostrarSenha()"
+              [attr.aria-label]="mostrarSenha ? 'Ocultar senha' : 'Mostrar senha'"
+            >
+              <svg *ngIf="!mostrarSenha" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+              <svg *ngIf="mostrarSenha" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                <line x1="1" y1="1" x2="23" y2="23"></line>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-submit">Entrar</button>
+
+        <hr>
+
+        <a href="#" class="link-esqueceu" (click)="toggleRecuperarSenha($event)">Esqueceu a senha?</a>
+      </form>
+    </div>
+
+    <div class="form-card" *ngIf="mostrarRecuperarSenha">
+      <h2 class="form-title">Esqueceu a senha?</h2>
+      <p class="form-description">
+        Insira seu endereço de e-mail e lhe enviaremos as instruções para redefinir a senha.
+      </p>
+      
+      <form class="login-form" [formGroup]="recuperarSenhaForm" (ngSubmit)="onRecuperarSenha()">
+        <div class="form-group">
+          <label for="emailRecuperar">E-mail</label>
+          <div class="input-wrapper">
+            <img src="assets/icons/email.svg" alt="Email" class="input-icon">
+            <input 
+              type="email" 
+              id="emailRecuperar" 
+              formControlName="email"
+              placeholder="seu@email.com"
+              class="form-control"
+            >
+          </div>
+        </div>
+        
+        <button type="submit" class="btn-submit">Enviar</button>
+        
+        <a href="#" class="link-voltar" (click)="toggleRecuperarSenha($event)">Voltar ao Login</a>
+      </form>
+    </div>
+  </div>
+</div>

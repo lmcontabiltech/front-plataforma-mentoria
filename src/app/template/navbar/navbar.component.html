@@ -1,1 +1,178 @@
-<p>navbar works!</p>
+<!-- HEADER -->
+<header #header class="header" id="header" [class.left-pd]="isSidebarOpen">
+    <div class="header-container">
+      <button (click)="toggleSidebar()" class="header-toggle" id="header-toggle">
+        <img src="assets/icons/menu-icon.svg" alt="image" />
+      </button>
+      <div class="sidebar-logo-mobile">
+        <img src="assets/logo/mentoria-logo.png" alt="image" />
+      </div>
+
+      <div class="header-user">
+        <div class="notification">
+          <button class="notification-button" (click)="toggleNotifications()">
+            <img src="assets/icons/notification.svg" alt="Notification Icon" class="notification-icon" />
+          </button>
+          
+          <!-- Dropdown de notificações movido para dentro do container -->
+          <div class="dropdown-notification" [ngClass]="{ 'show': isNotificationOpen }">
+            <div class="notification-header">
+              <h3>Notificações</h3>
+            </div>
+            <div class="notification-list">
+              <div *ngFor="let notification of notificacoes" class="notification-item">
+                <p>{{ notification.message }}</p>
+                <span class="notification-time">{{ notification.time | date:'shortTime' }}</span>
+              </div>
+              <div *ngIf="notificacoes.length === 0" class="no-notifications">
+                <p>Sem novas notificações</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="usuario">
+          <div class="user-photo" *ngIf="fotoUsuario; else fallbackPhoto">
+            <img [src]="fotoUsuario" alt="Foto do usuário" class="user-photo">
+          </div>
+          <ng-template #fallbackPhoto>
+            <div
+              class="user-initial"
+              [style.background-color]="getRandomColor(nomeUsuario)"
+            >
+              {{ getInitial(nomeUsuario) }}
+            </div>
+          </ng-template>
+          <div class="user-info">
+            <h3 class="user-name">{{ nomeUsuario || 'Usuário' }}</h3>
+            <span class="user-cargo">{{ permissaoUsuario || 'Cargo' }}</span>
+          </div>
+          <button #dropdownToggle (click)="toggleDropdown()" class="dropdown-toggle" id="dropdown-toggle">
+            <img src="assets/icons/dropdown-icon.svg" alt="Dropdown Icon" class="dropdown-icon" />
+          </button>
+          
+          <!-- Dropdown de perfil movido para dentro do container -->
+          <div class="dropdown-menu" id="dropdown-menu" [ngClass]="{ 'show': isDropdownOpen }">
+            <button routerLink="/sistema/meu-perfil" class="dropdown-item">Meu perfil</button>
+            <button class="dropdown-item" (click)="openModalLogout()">Sair</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <mat-drawer-container>
+    
+  <!-- SIDEBAR -->
+  <mat-drawer #sidebar class="sidebar" id="sidebar" mode="side" opened [class.show-sidebar]="isSidebarOpen">
+    <div class="sidebar-container">
+      <div class="sidebar-logo-container">
+        <div class="sidebar-logo">
+          <div class="sidebar-img">
+            <img src="assets/logo/mentoria-logo.png" alt="image" />
+          </div>
+  
+          <div class="sidebar-info">
+            <h1>Mentoria</h1>
+          </div>
+        </div>
+      </div>
+  
+      <mat-nav-list class="sidebar-content">
+        <div>
+          <h3 class="sidebar-title">HOME</h3>
+  
+          <div class="sidebar-list">
+            <a routerLink="/sistema/dashboard" class="sidebar-link"
+              [ngClass]="{ 'active-link': isActive('/sistema/dashboard') }">
+              <div class="sidebar-link-icon">
+                <img src="assets/icons/home.svg" alt="home icon" />
+              </div>
+              <span>Dashboard</span>
+            </a>
+          </div>
+        </div>
+  
+        <div>
+          <h3 class="sidebar-title">GESTÃO</h3>
+  
+          <div class="sidebar-list">
+            <a routerLink="/sistema/mentorias" class="sidebar-link"
+              [ngClass]="{'active-link': isActive('/sistema/mentorias')}">
+              <div class="sidebar-link-icon">
+                <img src="assets/icons/mentorias.svg" alt="Mentorias icon" />
+              </div>
+              <span>Mentorias</span>
+            </a>
+  
+            <a routerLink="/sistema/alunos" class="sidebar-link"
+              [ngClass]="{'active-link': isActive('/sistema/alunos')}">
+              <div class="sidebar-link-icon">
+                <img src="assets/icons/alunos.svg" alt="Alunos icon" />
+              </div>
+              <span>Alunos</span>
+            </a>
+  
+            <a routerLink="/sistema/empresas" class="sidebar-link"
+              [ngClass]="{'active-link': isActive('/sistema/empresas')}">
+              <div class="sidebar-link-icon">
+                <img src="assets/icons/empresas.svg" alt="Empresas icon" />
+              </div>
+              <span>Empresas</span>
+            </a>
+          </div>
+        </div>
+  
+        <div>
+          <h3 class="sidebar-title">FERRAMENTAS</h3>
+  
+          <div class="sidebar-list">
+            <a routerLink="/sistema/calculadora" class="sidebar-link"
+              [ngClass]="{'active-link': isActive('/sistema/calculadora')}">
+              <div class="sidebar-link-icon">
+                <img src="assets/icons/calculadora.svg" alt="Calculadora icon" />
+              </div>
+              <span>Calculadora</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="usuario-mobile">
+          <div class="user-photo" *ngIf="fotoUsuario; else fallbackPhotoMobile">
+            <img [src]="fotoUsuario" alt="Foto do usuário" class="user-photo">
+          </div>
+          <ng-template #fallbackPhotoMobile>
+            <div
+              class="user-initial"
+              [style.background-color]="getRandomColor(nomeUsuario)"
+            >
+              {{ getInitial(nomeUsuario) }}
+            </div>
+          </ng-template>
+          <div class="user-info">
+            <h3 class="user-name">{{ nomeUsuario || 'Usuário' }}</h3>
+            <span class="user-cargo">{{ permissaoUsuario || 'Cargo' }}</span>
+          </div>
+          <button (click)="toggleDropdown()" class="dropdown-toggle" id="dropdown-toggle-mobile">
+            <img src="assets/icons/dropdown-icon.svg" alt="Dropdown Icon" class="dropdown-icon" />
+          </button>
+          
+          <!-- Dropdown de perfil para mobile -->
+          <div class="dropdown-menu" id="dropdown-menu-mobile" [ngClass]="{ 'show': isDropdownOpen }">
+            <button routerLink="/sistema/meu-perfil" class="dropdown-item">Meu perfil</button>
+            <button class="dropdown-item" (click)="openModalLogout()">Sair</button>
+          </div>
+        </div>
+  
+      </mat-nav-list>
+    </div>
+  </mat-drawer>
+
+<!-- MAIN CONTENT -->
+  <mat-drawer-content #content class="drawer-content" [class.shifted]="isSidebarOpen">
+    <div class="overlay" [ngClass]="{ 'show': isSidebarOpen }" (click)="toggleSidebar()"></div>
+    <div>
+      <router-outlet></router-outlet>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>
