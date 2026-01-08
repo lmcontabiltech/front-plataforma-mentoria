@@ -21,6 +21,7 @@ body {
     --primary-hover: #080829;
     --secondary-color: #BD9339;
     --secondary-hover: #A67C32;
+    --transparent-hover: #ffffff3a;
     --verde: #3DA11B;
     --vermelho: #EF4444;
     --azul: #51A2FF;
@@ -32,6 +33,13 @@ body {
     --text-secondary: #666;
     --text-muted: #999;
     --border-color: #ddd;
+}
+
+.flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
 }
 
 .form-card {

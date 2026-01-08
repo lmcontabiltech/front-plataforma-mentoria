@@ -7,6 +7,7 @@ import { AlunosComponent } from './alunos/alunos.component';
 import { EmpresasComponent } from './empresas/empresas.component';
 import { CalculadoraComponent } from './calculadora/calculadora.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { CaixaDeEntradaComponent } from './caixa-de-entrada/caixa-de-entrada.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     AlunosComponent,
     EmpresasComponent,
     CalculadoraComponent,
-    DashboardComponent
+    DashboardComponent,
+    CaixaDeEntradaComponent
   ],
   imports: [
     CommonModule,

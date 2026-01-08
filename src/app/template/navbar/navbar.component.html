@@ -32,20 +32,22 @@
         </div>
         
         <div class="usuario">
-          <div class="user-photo" *ngIf="fotoUsuario; else fallbackPhoto">
-            <img [src]="fotoUsuario" alt="Foto do usuário" class="user-photo">
-          </div>
-          <ng-template #fallbackPhoto>
-            <div
-              class="user-initial"
-              [style.background-color]="getRandomColor(nomeUsuario)"
-            >
-              {{ getInitial(nomeUsuario) }}
+          <div class="flex">        
+            <div class="user-photo" *ngIf="fotoUsuario; else fallbackPhoto">
+              <img [src]="fotoUsuario" alt="Foto do usuário" class="user-photo">
             </div>
-          </ng-template>
-          <div class="user-info">
-            <h3 class="user-name">{{ nomeUsuario || 'Usuário' }}</h3>
-            <span class="user-cargo">{{ permissaoUsuario || 'Cargo' }}</span>
+            <ng-template #fallbackPhoto>
+              <div
+                class="user-initial"
+                [style.background-color]="getRandomColor(nomeUsuario)"
+              >
+                {{ getInitial(nomeUsuario) }}
+              </div>
+            </ng-template>
+            <div class="user-info">
+              <h3 class="user-name">{{ nomeUsuario || 'Usuário' }}</h3>
+              <span class="user-cargo">{{ permissaoUsuario || 'Cargo' }}</span>
+            </div>
           </div>
           <button #dropdownToggle (click)="toggleDropdown()" class="dropdown-toggle" id="dropdown-toggle">
             <img src="assets/icons/dropdown-icon.svg" alt="Dropdown Icon" class="dropdown-icon" />
@@ -90,11 +92,19 @@
               </div>
               <span>Dashboard</span>
             </a>
+
+            <a routerLink="/sistema/caixa-de-entrada" class="sidebar-link"
+              [ngClass]="{ 'active-link': isActive('/sistema/caixa-de-entrada') }">
+              <div class="sidebar-link-icon">
+                <img src="assets/icons/caixa-de-entrada.svg" alt="caixa de entrada icon" />
+              </div>
+              <span>Caixa de Entrada</span>
+            </a>
           </div>
         </div>
   
         <div>
-          <h3 class="sidebar-title">GESTÃO</h3>
+          <h3 class="sidebar-title">RECURSOS</h3>
   
           <div class="sidebar-list">
             <a routerLink="/sistema/mentorias" class="sidebar-link"
@@ -120,13 +130,7 @@
               </div>
               <span>Empresas</span>
             </a>
-          </div>
-        </div>
-  
-        <div>
-          <h3 class="sidebar-title">FERRAMENTAS</h3>
-  
-          <div class="sidebar-list">
+            
             <a routerLink="/sistema/calculadora" class="sidebar-link"
               [ngClass]="{'active-link': isActive('/sistema/calculadora')}">
               <div class="sidebar-link-icon">
