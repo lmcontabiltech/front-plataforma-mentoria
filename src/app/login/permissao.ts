@@ -1,0 +1,7 @@
+export enum Permissao {
+  ADMIN = 'ROLE_ADMIN',
+  ALUNO = 'ROLE_ALUNO',
+  MENTOR = 'ROLE_MENTOR',
+  EMPRESA = 'ROLE_EMPRESA',
+  SUPORTE = 'ROLE_SUPORTE',
+}
