@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
       console.log('Login:', this.loginForm.value);
       // Implementar lógica de login
       // Redireciona para o dashboard após login
-      this.router.navigate(['/sistema/dashboard']);
+      this.router.navigate(['/sistema/login']);
     }
   }
 
